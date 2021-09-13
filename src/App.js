@@ -1,25 +1,19 @@
 import { useState, useEffect } from 'react';
+import { API, getData } from './lib/api';
 import './App.css';
 
-const API = 'https://swapi.dev/api/people';
-
 export default function App() {
-  const [people, setPeople] = useState([]);
+  const [characters, setCharacters] = useState([]);
 
-  const getData = async () => {
-    const response = await fetch(API);
-    const data = await response.json();
-
-    setPeople(data.results);
-  };
-
-  // Initial setup
   useEffect(() => {
-    getData();
+    (async () => {
+      const { results } = await getData(API);
+      setCharacters(results);
+    })();
   }, []);
 
   return (
-    <div>
+    <>
       <h1>Star Wars characters</h1>
       <table>
         <thead>
@@ -30,8 +24,8 @@ export default function App() {
           </tr>
         </thead>
         <tbody>
-          {people.map(({ name, height }) => (
-            <tr>
+          {characters.map(({ name, height }) => (
+            <tr key={name}>
               <td>{name}</td>
               <td>{Number(height)}</td>
               <td>??</td>
@@ -39,6 +33,6 @@ export default function App() {
           ))}
         </tbody>
       </table>
-    </div>
+    </>
   );
 }
