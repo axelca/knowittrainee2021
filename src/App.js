@@ -1,25 +1,44 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
 
-function App() {
+const API = 'https://swapi.dev/api/people';
+
+export default function App() {
+  const [people, setPeople] = useState([]);
+
+  const getData = async () => {
+    const response = await fetch(API);
+    const data = await response.json();
+
+    setPeople(data.results);
+  };
+
+  // Initial setup
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Star Wars characters</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Height</th>
+            <th>Film appearances</th>
+          </tr>
+        </thead>
+        <tbody>
+          {people.map(({ name, height }) => (
+            <tr>
+              <td>{name}</td>
+              <td>{Number(height)}</td>
+              <td>??</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
-
-export default App;
