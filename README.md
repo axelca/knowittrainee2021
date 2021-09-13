@@ -4,11 +4,12 @@ Welcome! This is just a simple react example, just for fun.
 
 ## Installation
 
-1. Download [Node.js](https://nodejs.org/)
-2. Download [VS Code](https://code.visualstudio.com/) (Or another editor)
-3. Run ```npm i```
-4. Run ```npm start```
-5. Access the app in your browser
+1. Clone this repo ```git clone https://github.com/axelca/knowittrainee2021```
+2. Download [Node.js](https://nodejs.org/)
+3. Download [VS Code](https://code.visualstudio.com/) (Or another editor)
+4. Run ```npm i```
+5. Run ```npm start```
+6. Access the app in your browser
 
 ## Ideas for features to implement
 
